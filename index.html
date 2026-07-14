@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0a1a0c" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <title>Dr Honey</title>
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #0a1a0c;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .bg-video {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .page {
+      position: relative;
+      z-index: 5;
+      width: 100%;
+      height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-bottom: 38vh;
+      pointer-events: none;
+      isolation: isolate;
+    }
+
+    .stage {
+      position: relative;
+      z-index: 2;
+      width: min(35vw, 35vh, 210px);
+      aspect-ratio: 1;
+      pointer-events: auto;
+      isolation: isolate;
+    }
+
+    .lang-switch {
+      position: fixed;
+      top: max(1.25rem, env(safe-area-inset-top));
+      right: max(1.25rem, env(safe-area-inset-right));
+      z-index: 10;
+      display: flex;
+      gap: 0.35rem;
+      padding: 0.3rem;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      background: rgba(8, 18, 10, 0.35);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      pointer-events: auto;
+      direction: ltr;
+    }
+
+    .products {
+      position: fixed;
+      left: 50%;
+      bottom: max(3.75rem, calc(env(safe-area-inset-bottom) + 2.75rem));
+      transform: translateX(-50%);
+      z-index: 10;
+      width: min(36rem, calc(100% - 2.5rem));
+      color: #ffffff;
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "SF Pro Text",
+        "Helvetica Neue",
+        Helvetica,
+        Arial,
+        sans-serif;
+      font-size: 0.92rem;
+      font-weight: 600;
+      line-height: 1.5;
+      letter-spacing: -0.01em;
+      text-align: center;
+      text-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.7),
+        0 2px 8px rgba(0, 0, 0, 0.35);
+      white-space: pre-line;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .products.is-fading {
+      opacity: 0;
+    }
+
+    html[dir="rtl"] .products {
+      letter-spacing: 0;
+      line-height: 1.6;
+    }
+
+    .lang-btn {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      color: rgba(255, 255, 255, 0.62);
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "SF Pro Text",
+        "Helvetica Neue",
+        Helvetica,
+        Arial,
+        sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.55rem 0.85rem;
+      cursor: pointer;
+      transition: color 0.25s ease, background 0.25s ease;
+    }
+
+    .lang-btn:hover {
+      color: #ffffff;
+    }
+
+    .lang-btn.is-active {
+      color: #0a1a0c;
+      background: #ffffff;
+    }
+
+    .phone {
+      position: fixed;
+      right: max(1.25rem, env(safe-area-inset-right));
+      bottom: max(1.25rem, env(safe-area-inset-bottom));
+      z-index: 10;
+      color: #ffffff;
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "SF Pro Text",
+        "Helvetica Neue",
+        Helvetica,
+        Arial,
+        sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      text-shadow: 0 2px 16px rgba(0, 0, 0, 0.55);
+      direction: ltr;
+      unicode-bidi: isolate;
+      transition: opacity 0.25s ease;
+    }
+
+    .phone:hover {
+      opacity: 0.8;
+    }
+
+    .location {
+      position: fixed;
+      left: max(1.25rem, env(safe-area-inset-left));
+      bottom: max(1.25rem, env(safe-area-inset-bottom));
+      z-index: 10;
+      color: #ffffff;
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "SF Pro Text",
+        "Helvetica Neue",
+        Helvetica,
+        Arial,
+        sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      text-shadow: 0 2px 16px rgba(0, 0, 0, 0.55);
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .location.is-fading {
+      opacity: 0;
+    }
+
+    html[dir="rtl"] .location {
+      letter-spacing: 0;
+    }
+
+    .tagline-glow {
+      position: fixed;
+      left: 50%;
+      bottom: max(13rem, calc(env(safe-area-inset-bottom) + 12rem));
+      transform: translateX(-50%);
+      z-index: 1;
+      width: min(36rem, 88vw);
+      height: 7rem;
+      pointer-events: none;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.55);
+      filter: blur(42px);
+      opacity: 0.9;
+    }
+
+    .tagline {
+      position: fixed;
+      left: 50%;
+      bottom: max(15rem, calc(env(safe-area-inset-bottom) + 14rem));
+      transform: translateX(-50%);
+      z-index: 3;
+      width: min(40rem, calc(100% - 2.5rem));
+      text-align: center;
+      color: #ffffff;
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "SF Pro Display",
+        "SF Pro Text",
+        "Helvetica Neue",
+        Helvetica,
+        Arial,
+        sans-serif;
+      font-size: clamp(1.2rem, 2.6vw, 1.65rem);
+      font-weight: 600;
+      line-height: 1.45;
+      letter-spacing: -0.015em;
+      text-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.7),
+        0 2px 8px rgba(0, 0, 0, 0.35);
+      padding: 0.5rem 1rem;
+      background: none;
+      opacity: 1;
+      animation: taglineIn 1.1s 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    html[dir="rtl"] .tagline {
+      letter-spacing: 0;
+      line-height: 1.6;
+    }
+
+    .tagline.is-fading {
+      opacity: 0;
+      transform: translateX(-50%) translateY(6px);
+    }
+
+    @keyframes taglineIn {
+      from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+    }
+
+    .spin {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      animation: spinRound 8.5s cubic-bezier(0.45, 0.05, 0.25, 1) infinite;
+    }
+
+    .logo {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: auto;
+      margin: auto;
+      display: block;
+      will-change: opacity, filter, transform;
+    }
+
+    .logo-honey {
+      animation: honeyToWa 8.5s cubic-bezier(0.45, 0.05, 0.25, 1) infinite;
+      filter: drop-shadow(0 10px 24px rgba(46, 107, 58, 0.16));
+    }
+
+    .logo-wa {
+      width: 39%;
+      height: auto;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      animation: waFromHoney 8.5s cubic-bezier(0.45, 0.05, 0.25, 1) infinite;
+      filter: drop-shadow(0 10px 22px rgba(37, 211, 102, 0.4));
+    }
+
+    .wa-link {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    .wa-link a {
+      display: contents;
+      pointer-events: auto;
+    }
+
+    @keyframes spinRound {
+      0%,
+      22% {
+        transform: rotate(0deg) scale(1);
+      }
+      38% {
+        transform: rotate(360deg) scale(1.03);
+      }
+      42%,
+      68% {
+        transform: rotate(360deg) scale(1);
+      }
+      84% {
+        transform: rotate(720deg) scale(1.03);
+      }
+      88%,
+      100% {
+        transform: rotate(720deg) scale(1);
+      }
+    }
+
+    @keyframes honeyToWa {
+      0%,
+      22% {
+        opacity: 1;
+        filter: drop-shadow(0 10px 24px rgba(46, 107, 58, 0.16));
+        transform: scale(1);
+      }
+      32% {
+        opacity: 0.45;
+        filter: drop-shadow(0 10px 24px rgba(46, 107, 58, 0.1));
+        transform: scale(0.94);
+      }
+      38% {
+        opacity: 0;
+        filter: drop-shadow(0 10px 24px rgba(46, 107, 58, 0));
+        transform: scale(0.88);
+      }
+      38.01%,
+      84% {
+        opacity: 0;
+        filter: drop-shadow(0 10px 24px rgba(46, 107, 58, 0));
+        transform: scale(0.88);
+      }
+      92%,
+      100% {
+        opacity: 1;
+        filter: drop-shadow(0 10px 24px rgba(46, 107, 58, 0.16));
+        transform: scale(1);
+      }
+    }
+
+    @keyframes waFromHoney {
+      0%,
+      28% {
+        opacity: 0;
+        transform: scale(0.88);
+      }
+      36% {
+        opacity: 0.55;
+        filter: drop-shadow(0 10px 22px rgba(37, 211, 102, 0.28));
+        transform: scale(0.96);
+      }
+      42%,
+      68% {
+        opacity: 1;
+        filter: drop-shadow(0 10px 22px rgba(37, 211, 102, 0.4));
+        transform: scale(1);
+      }
+      78% {
+        opacity: 0.4;
+        transform: scale(0.94);
+      }
+      84%,
+      100% {
+        opacity: 0;
+        transform: scale(0.88);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .spin,
+      .logo-honey,
+      .logo-wa,
+      .tagline {
+        animation: none;
+      }
+
+      .logo-honey {
+        opacity: 1;
+      }
+
+      .logo-wa {
+        opacity: 0;
+      }
+
+      .tagline {
+        opacity: 1;
+        animation: none;
+      }
+    }
+
+    /* ——— Mobile ——— */
+    @media (max-width: 768px) {
+      .page {
+        padding-bottom: 42vh;
+      }
+
+      .stage {
+        width: min(42vw, 38vh, 168px);
+      }
+
+      .lang-switch {
+        top: max(0.85rem, env(safe-area-inset-top));
+        right: max(0.85rem, env(safe-area-inset-right));
+        padding: 0.22rem;
+      }
+
+      .lang-btn {
+        font-size: 0.68rem;
+        padding: 0.5rem 0.72rem;
+        min-height: 2.25rem;
+      }
+
+      .tagline {
+        bottom: max(11.5rem, calc(env(safe-area-inset-bottom) + 10.5rem));
+        width: min(34rem, calc(100% - 1.75rem));
+        font-size: clamp(0.95rem, 3.8vw, 1.2rem);
+        line-height: 1.4;
+        padding: 0.35rem 0.65rem;
+      }
+
+      .tagline-glow {
+        bottom: max(10rem, calc(env(safe-area-inset-bottom) + 9rem));
+        width: min(92vw, 28rem);
+        height: 6rem;
+        filter: blur(34px);
+      }
+
+      .products {
+        bottom: max(3.4rem, calc(env(safe-area-inset-bottom) + 2.6rem));
+        width: calc(100% - 1.5rem);
+        font-size: 0.8rem;
+        line-height: 1.45;
+      }
+
+      .location,
+      .phone {
+        bottom: max(0.85rem, env(safe-area-inset-bottom));
+        font-size: 0.72rem;
+        max-width: 42vw;
+      }
+
+      .location {
+        left: max(0.85rem, env(safe-area-inset-left));
+      }
+
+      .phone {
+        right: max(0.85rem, env(safe-area-inset-right));
+      }
+    }
+
+    @media (max-width: 480px) {
+      .page {
+        padding-bottom: 46vh;
+      }
+
+      .stage {
+        width: min(46vw, 160px);
+      }
+
+      .tagline {
+        bottom: max(12.75rem, calc(env(safe-area-inset-bottom) + 11.75rem));
+        width: calc(100% - 1.35rem);
+        font-size: 0.92rem;
+        line-height: 1.38;
+      }
+
+      .tagline-glow {
+        bottom: max(11.25rem, calc(env(safe-area-inset-bottom) + 10.25rem));
+        height: 5.5rem;
+      }
+
+      .products {
+        bottom: max(3.1rem, calc(env(safe-area-inset-bottom) + 2.4rem));
+        font-size: 0.74rem;
+        line-height: 1.42;
+      }
+
+      .location {
+        max-width: 46vw;
+        font-size: 0.68rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .phone {
+        max-width: 46vw;
+        font-size: 0.68rem;
+        white-space: nowrap;
+      }
+    }
+
+    @media (max-height: 700px) and (max-width: 768px) {
+      .page {
+        padding-bottom: 48vh;
+      }
+
+      .stage {
+        width: min(34vw, 130px);
+      }
+
+      .tagline {
+        bottom: max(10.5rem, calc(env(safe-area-inset-bottom) + 9.5rem));
+        font-size: 0.85rem;
+      }
+
+      .tagline-glow {
+        bottom: max(9.25rem, calc(env(safe-area-inset-bottom) + 8.25rem));
+        height: 4.5rem;
+      }
+
+      .products {
+        bottom: max(2.85rem, calc(env(safe-area-inset-bottom) + 2.1rem));
+        font-size: 0.7rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <video class="bg-video" autoplay muted loop playsinline>
+    <source src="video.mp4" type="video/mp4" />
+  </video>
+
+  <div class="lang-switch" role="group" aria-label="Language">
+    <button type="button" class="lang-btn is-active" data-lang="en" aria-pressed="true">EN</button>
+    <button type="button" class="lang-btn" data-lang="ar" aria-pressed="false">AR</button>
+  </div>
+
+  <main class="page">
+    <div class="stage">
+      <div class="spin">
+        <img class="logo logo-honey" src="dr honey.png" alt="Dr Honey" />
+        <div class="wa-link">
+          <a href="https://wa.me/962777226349" target="_blank" rel="noopener noreferrer" aria-label="Contact on WhatsApp">
+            <img class="logo logo-wa" src="whatsapp.png" alt="WhatsApp" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div class="tagline-glow" aria-hidden="true"></div>
+
+  <p class="tagline" id="tagline" data-en="Based in Amman, Doctor Honey offers a carefully selected range of raw, natural, and unfiltered honey, sourced directly from trusted beekeepers to preserve its purity." data-ar="يقع مقرّ دكتور هاني في عمّان، ويقدّم تشكيلة مختارة بعناية من العسل الطبيعي الخام وغير المُصفّى، تُستَورد مباشرةً من مربّي النحل الموثوقين للحفاظ على نقائه.">
+    Based in Amman, Doctor Honey offers a carefully selected range of raw, natural, and unfiltered honey, sourced directly from trusted beekeepers to preserve its purity.
+  </p>
+
+  <p class="products" id="products" data-en="Honey varieties such as Sowaj Jabal packaged in jars
+250 g: US$30-80
+500 g: US$60-150
+1 kg: US$120-300+" data-ar="أنواع العسل مثل سواج جبل المعبأة في مرطبانات
+250 غ: 30-80 دولارًا
+500 غ: 60-150 دولارًا
+1 كغ: 120-300+ دولارًا">Honey varieties such as Sowaj Jabal packaged in jars
+250 g: US$30-80
+500 g: US$60-150
+1 kg: US$120-300+</p>
+
+  <p class="location" id="location" data-en="Tabarboor, Amman, Jordan" data-ar="طبربور، عمّان، الأردن">
+    Tabarboor, Amman, Jordan
+  </p>
+
+  <a class="phone" href="https://wa.me/962777226349" target="_blank" rel="noopener noreferrer">+962 7 7722 6349</a>
+
+  <script>
+    const tagline = document.getElementById("tagline");
+    const locationEl = document.getElementById("location");
+    const productsEl = document.getElementById("products");
+    const buttons = document.querySelectorAll(".lang-btn");
+    const copy = {
+      en: tagline.getAttribute("data-en"),
+      ar: tagline.getAttribute("data-ar"),
+    };
+    const locationCopy = {
+      en: locationEl.getAttribute("data-en"),
+      ar: locationEl.getAttribute("data-ar"),
+    };
+    const productsCopy = {
+      en: productsEl.getAttribute("data-en"),
+      ar: productsEl.getAttribute("data-ar"),
+    };
+
+    function setLang(lang) {
+      const isAr = lang === "ar";
+      document.documentElement.lang = lang;
+      document.documentElement.dir = isAr ? "rtl" : "ltr";
+
+      tagline.classList.add("is-fading");
+      locationEl.classList.add("is-fading");
+      productsEl.classList.add("is-fading");
+
+      window.setTimeout(() => {
+        tagline.textContent = copy[lang];
+        locationEl.textContent = locationCopy[lang];
+        productsEl.textContent = productsCopy[lang];
+        tagline.classList.remove("is-fading");
+        locationEl.classList.remove("is-fading");
+        productsEl.classList.remove("is-fading");
+      }, 180);
+
+      buttons.forEach((btn) => {
+        const active = btn.getAttribute("data-lang") === lang;
+        btn.classList.toggle("is-active", active);
+        btn.setAttribute("aria-pressed", active ? "true" : "false");
+      });
+    }
+
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        setLang(btn.getAttribute("data-lang"));
+      });
+    });
+  </script>
+</body>
+</html>
