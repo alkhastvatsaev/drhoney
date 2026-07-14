@@ -26,6 +26,16 @@
       -webkit-tap-highlight-color: transparent;
     }
 
+    .bg-poster {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      pointer-events: none;
+    }
+
     .bg-video {
       position: fixed;
       inset: 0;
@@ -34,6 +44,12 @@
       object-fit: cover;
       z-index: 0;
       pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .bg-video.is-ready {
+      opacity: 1;
     }
 
     .page {
@@ -548,7 +564,18 @@
   </style>
 </head>
 <body>
-  <video class="bg-video" autoplay muted loop playsinline>
+  <img class="bg-poster" src="poster.jpg" alt="" aria-hidden="true" />
+  <video
+    id="bg-video"
+    class="bg-video"
+    autoplay
+    muted
+    loop
+    playsinline
+    webkit-playsinline
+    preload="auto"
+    poster="poster.jpg"
+  >
     <source src="video.mp4" type="video/mp4" />
   </video>
 
@@ -594,6 +621,7 @@
   <a class="phone" href="https://wa.me/962777226349" target="_blank" rel="noopener noreferrer">+962 7 7722 6349</a>
 
   <script>
+    const bgVideo = document.getElementById("bg-video");
     const tagline = document.getElementById("tagline");
     const locationEl = document.getElementById("location");
     const productsEl = document.getElementById("products");
@@ -610,6 +638,43 @@
       en: productsEl.getAttribute("data-en"),
       ar: productsEl.getAttribute("data-ar"),
     };
+
+    function startBackgroundVideo() {
+      if (!bgVideo) return;
+      bgVideo.muted = true;
+      bgVideo.playsInline = true;
+      bgVideo.classList.add("is-ready");
+      const playPromise = bgVideo.play();
+      if (playPromise && typeof playPromise.catch === "function") {
+        playPromise.catch(() => {
+          // Retry once enough data is buffered
+          const retry = () => {
+            bgVideo.play().catch(() => {});
+          };
+          bgVideo.addEventListener("canplay", retry, { once: true });
+          bgVideo.addEventListener("loadeddata", retry, { once: true });
+        });
+      }
+    }
+
+    if (bgVideo) {
+      if (bgVideo.readyState >= 2) {
+        startBackgroundVideo();
+      } else {
+        bgVideo.addEventListener("loadeddata", startBackgroundVideo, { once: true });
+        bgVideo.addEventListener("canplay", startBackgroundVideo, { once: true });
+      }
+      document.addEventListener("visibilitychange", () => {
+        if (!document.hidden && bgVideo.paused) startBackgroundVideo();
+      });
+      document.addEventListener(
+        "touchstart",
+        () => {
+          if (bgVideo.paused) startBackgroundVideo();
+        },
+        { once: true, passive: true }
+      );
+    }
 
     function setLang(lang) {
       const isAr = lang === "ar";
