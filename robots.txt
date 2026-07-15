@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://drhoney.vercel.app/sitemap.xml
