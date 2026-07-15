@@ -681,7 +681,7 @@
   </style>
 </head>
 <body>
-  <img class="bg-poster" src="poster.jpg" alt="" aria-hidden="true" />
+  <img class="bg-poster" src="poster.jpg" alt="" fetchpriority="high" decoding="async" aria-hidden="true" />
   <video
     id="bg-video"
     class="bg-video"
@@ -690,7 +690,7 @@
     loop
     playsinline
     webkit-playsinline
-    preload="auto"
+    preload="metadata"
     poster="poster.jpg"
   >
     <source src="video.mp4" type="video/mp4" />
@@ -713,7 +713,7 @@
   <main class="page">
     <div class="stage">
       <div class="spin">
-        <img class="logo logo-honey" src="dr honey.png" alt="دكتور هاني — عسل طبيعي في عمّان | Doctor Honey logo" />
+        <img class="logo logo-honey" src="dr-honey.png" alt="دكتور هاني — عسل طبيعي في عمّان | Doctor Honey logo" />
         <div class="wa-link">
           <a href="https://wa.me/962777226349" target="_blank" rel="noopener noreferrer" aria-label="تواصل عبر واتساب — WhatsApp Doctor Honey Amman">
             <img class="logo logo-wa" src="whatsapp.png" alt="WhatsApp Doctor Honey" />
@@ -768,27 +768,42 @@
     function startBackgroundVideo() {
       if (!bgVideo) return;
       bgVideo.muted = true;
-      bgVideo.playsInline = true;
-      bgVideo.classList.add("is-ready");
+      bgVideo.setAttribute("playsinline", "");
+      bgVideo.setAttribute("webkit-playsinline", "");
+      const reveal = () => bgVideo.classList.add("is-ready");
       const playPromise = bgVideo.play();
-      if (playPromise && typeof playPromise.catch === "function") {
-        playPromise.catch(() => {
-          // Retry once enough data is buffered
-          const retry = () => {
-            bgVideo.play().catch(() => {});
-          };
-          bgVideo.addEventListener("canplay", retry, { once: true });
-          bgVideo.addEventListener("loadeddata", retry, { once: true });
-        });
+      if (playPromise && typeof playPromise.then === "function") {
+        playPromise
+          .then(reveal)
+          .catch(() => {
+            const retry = () => {
+              bgVideo.play().then(reveal).catch(() => {});
+            };
+            bgVideo.addEventListener("canplay", retry, { once: true });
+            bgVideo.addEventListener("loadeddata", retry, { once: true });
+            // Never block the page if video fails: poster stays visible
+            window.setTimeout(reveal, 2500);
+          });
+      } else {
+        reveal();
       }
     }
 
     if (bgVideo) {
+      // Show UI immediately; video is progressive enhancement
       if (bgVideo.readyState >= 2) {
         startBackgroundVideo();
       } else {
         bgVideo.addEventListener("loadeddata", startBackgroundVideo, { once: true });
         bgVideo.addEventListener("canplay", startBackgroundVideo, { once: true });
+        bgVideo.addEventListener("error", () => {
+          // Keep poster if video cannot load (slow/blocked network)
+          bgVideo.style.display = "none";
+        }, { once: true });
+        // Fallback start after short delay on weak connections
+        window.setTimeout(() => {
+          if (!bgVideo.classList.contains("is-ready")) startBackgroundVideo();
+        }, 1500);
       }
       document.addEventListener("visibilitychange", () => {
         if (!document.hidden && bgVideo.paused) startBackgroundVideo();
@@ -799,6 +814,13 @@
           if (bgVideo.paused) startBackgroundVideo();
         },
         { once: true, passive: true }
+      );
+      document.addEventListener(
+        "click",
+        () => {
+          if (bgVideo.paused) startBackgroundVideo();
+        },
+        { once: true }
       );
     }
 
