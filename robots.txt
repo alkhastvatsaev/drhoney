@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://drhoney.vercel.app/sitemap.xml
+Sitemap: https://drhoney.xyz/sitemap.xml
