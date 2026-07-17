@@ -7,6 +7,14 @@
       ],
       "destination": "https://drhoney.xyz/:path*",
       "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        { "type": "host", "value": "drhoney.vercel.app" }
+      ],
+      "destination": "https://drhoney.xyz/:path*",
+      "permanent": true
     }
   ],
   "headers": [
