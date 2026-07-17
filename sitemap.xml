@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://drhoney.xyz/</loc>
     <lastmod>2026-07-17</lastmod>
@@ -10,5 +11,10 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://drhoney.xyz/" />
     <xhtml:link rel="alternate" hreflang="ru" href="https://drhoney.xyz/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://drhoney.xyz/" />
+    <image:image>
+      <image:loc>https://drhoney.xyz/dr-honey-900g.jpg</image:loc>
+      <image:title>Dr. Honey natural honey 900 g jar</image:title>
+      <image:caption>Natural honey from Kyrgyzstan, 900 g jar for 30 JOD in Amman.</image:caption>
+    </image:image>
   </url>
 </urlset>
