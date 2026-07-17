@@ -424,6 +424,17 @@
       line-height: 1.6;
     }
 
+    html[lang="ru"] .tagline {
+      bottom: max(11rem, calc(env(safe-area-inset-bottom) + 10rem));
+      width: min(44rem, calc(100% - 2.5rem));
+      font-size: clamp(1.05rem, 2.2vw, 1.4rem);
+      line-height: 1.42;
+    }
+
+    html[lang="ru"] .tagline-glow {
+      bottom: max(9.5rem, calc(env(safe-area-inset-bottom) + 8.5rem));
+    }
+
     .tagline.is-fading {
       opacity: 0;
       transform: translateX(-50%) translateY(6px);
@@ -626,6 +637,16 @@
         filter: blur(34px);
       }
 
+      html[lang="ru"] .tagline {
+        bottom: max(9rem, calc(env(safe-area-inset-bottom) + 8rem));
+        font-size: clamp(0.95rem, 3.8vw, 1.15rem);
+        line-height: 1.4;
+      }
+
+      html[lang="ru"] .tagline-glow {
+        bottom: max(7.75rem, calc(env(safe-area-inset-bottom) + 6.75rem));
+      }
+
       .products {
         bottom: max(3.4rem, calc(env(safe-area-inset-bottom) + 2.6rem));
         width: calc(100% - 1.5rem);
@@ -771,7 +792,7 @@
 
   <div class="tagline-glow" aria-hidden="true"></div>
 
-  <p class="tagline" id="tagline" data-en="Based in Amman, Doctor Honey offers carefully selected raw, natural, and unfiltered honey from Kyrgyzstan, sourced directly from trusted beekeepers to preserve its purity." data-ar="دكتور هاني في عمّان. نبيع عسل طبيعي نظيف من قيرغيزستان، من النحالين مباشرة، بدون تصفية." data-ru="Компания Doctor Honey находится в Аммане и предлагает тщательно отобранный сырой, натуральный и нефильтрованный мёд из Кыргызстана, полученный напрямую от проверенных пчеловодов, чтобы сохранить его чистоту.">
+  <p class="tagline" id="tagline" data-en="Based in Amman, Doctor Honey offers carefully selected raw, natural, and unfiltered honey from Kyrgyzstan, sourced directly from trusted beekeepers to preserve its purity." data-ar="دكتور هاني في عمّان. نبيع عسل طبيعي نظيف من قيرغيزستان، من النحالين مباشرة، بدون تصفية." data-ru="Doctor Honey в Аммане предлагает тщательно отобранный сырой, натуральный и нефильтрованный мёд из Кыргызстана напрямую от проверенных пчеловодов.">
     دكتور هاني في عمّان. نبيع عسل طبيعي نظيف من قيرغيزستان، من النحالين مباشرة، بدون تصفية.
   </p>
 
