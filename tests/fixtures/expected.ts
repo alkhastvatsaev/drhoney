@@ -8,8 +8,8 @@ export const EXPECTED = {
   stripeHost: "buy.stripe.com",
   /** When process.env.REQUIRE_LIVE_STRIPE=1, fail if link still contains /test_ */
   stripePaymentLinkRe: /^https:\/\/buy\.stripe\.com\/(?:test_)?[A-Za-z0-9]+/,
-  productImage: "dr-honey-900g-v3.png",
-  ogImage: "og-dr-honey-900g.png",
+  productImage: "dr-honey-900g-v4.png",
+  ogImage: "og-dr-honey-900g-v2.png",
   favicon48: "favicon-48.png",
   video: "video.mp4",
   poster: "poster.jpg",
