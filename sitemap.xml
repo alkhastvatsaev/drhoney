@@ -8,37 +8,63 @@
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://drhoney.xyz/" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://drhoney.xyz/" />
-    <xhtml:link rel="alternate" hreflang="ru" href="https://drhoney.xyz/" />
-    <xhtml:link rel="alternate" hreflang="fr" href="https://drhoney.xyz/" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://drhoney.xyz/" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://drhoney.xyz/" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://drhoney.xyz/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://drhoney.xyz/" />
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://drhoney.xyz/" />
-    <xhtml:link rel="alternate" hreflang="ja" href="https://drhoney.xyz/" />
-    <xhtml:link rel="alternate" hreflang="ko" href="https://drhoney.xyz/" />
-    <xhtml:link rel="alternate" hreflang="hi" href="https://drhoney.xyz/" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://drhoney.xyz/" />
-    <xhtml:link rel="alternate" hreflang="nl" href="https://drhoney.xyz/" />
-    <xhtml:link rel="alternate" hreflang="pl" href="https://drhoney.xyz/" />
-    <xhtml:link rel="alternate" hreflang="he" href="https://drhoney.xyz/" />
-    <xhtml:link rel="alternate" hreflang="uk" href="https://drhoney.xyz/" />
-    <xhtml:link rel="alternate" hreflang="ro" href="https://drhoney.xyz/" />
-    <xhtml:link rel="alternate" hreflang="sv" href="https://drhoney.xyz/" />
-    <xhtml:link rel="alternate" hreflang="id" href="https://drhoney.xyz/" />
-    <xhtml:link rel="alternate" hreflang="th" href="https://drhoney.xyz/" />
-    <xhtml:link rel="alternate" hreflang="fa" href="https://drhoney.xyz/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://drhoney.xyz/ru" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://drhoney.xyz/ar" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://drhoney.xyz/" />
     <image:image>
       <image:loc>https://drhoney.xyz/dr-honey-900g.png</image:loc>
-      <image:title>Dr. Honey 900 g jar — kraft floral lid</image:title>
-      <image:caption>Dr. Honey natural honey 900 g jar with kraft floral lid — 30 JOD in Amman.</image:caption>
+      <image:title>Dr. Honey 900 g jar</image:title>
+      <image:caption>Natural honey 900 g in Amman — 30 JOD</image:caption>
     </image:image>
-    <image:image>
-      <image:loc>https://drhoney.xyz/favicon-512.png</image:loc>
-      <image:title>Dr. Honey logo</image:title>
-      <image:caption>Dr. Honey — natural honey in Amman, Jordan.</image:caption>
-    </image:image>
+  </url>
+  <url>
+    <loc>https://drhoney.xyz/ru</loc>
+    <lastmod>2026-07-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://drhoney.xyz/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://drhoney.xyz/ru" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://drhoney.xyz/ar" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://drhoney.xyz/" />
+  </url>
+  <url>
+    <loc>https://drhoney.xyz/ar</loc>
+    <lastmod>2026-07-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://drhoney.xyz/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://drhoney.xyz/ru" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://drhoney.xyz/ar" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://drhoney.xyz/" />
+  </url>
+  <url>
+    <loc>https://drhoney.xyz/guides/buy-honey-amman</loc>
+    <lastmod>2026-07-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://drhoney.xyz/guides/buy-honey-amman" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://drhoney.xyz/guides/kupit-naturalnyj-med-amman" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://drhoney.xyz/guides/asal-tabii-amman" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://drhoney.xyz/guides/buy-honey-amman" />
+  </url>
+  <url>
+    <loc>https://drhoney.xyz/guides/kupit-naturalnyj-med-amman</loc>
+    <lastmod>2026-07-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://drhoney.xyz/guides/buy-honey-amman" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://drhoney.xyz/guides/kupit-naturalnyj-med-amman" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://drhoney.xyz/guides/asal-tabii-amman" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://drhoney.xyz/guides/buy-honey-amman" />
+  </url>
+  <url>
+    <loc>https://drhoney.xyz/guides/asal-tabii-amman</loc>
+    <lastmod>2026-07-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://drhoney.xyz/guides/buy-honey-amman" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://drhoney.xyz/guides/kupit-naturalnyj-med-amman" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://drhoney.xyz/guides/asal-tabii-amman" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://drhoney.xyz/guides/buy-honey-amman" />
   </url>
 </urlset>

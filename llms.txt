@@ -2,15 +2,19 @@
 > Natural unfiltered honey from Kyrgyzstan, sold in Amman, Jordan.
 
 - Site: https://drhoney.xyz/
+- Russian: https://drhoney.xyz/ru
+- Arabic: https://drhoney.xyz/ar
+- Guide EN: https://drhoney.xyz/guides/buy-honey-amman
+- Guide RU: https://drhoney.xyz/guides/kupit-naturalnyj-med-amman
+- Guide AR: https://drhoney.xyz/guides/asal-tabii-amman
 - Product: 900 g jar — 30 JOD
 - Origin: Kyrgyzstan (Sowaj Jabal)
 - Location: Tabarboor, Amman, Jordan
 - Contact: WhatsApp +962 7 7722 6349
-- Languages: English, Arabic (العربية), Russian (русский)
-- Buy: click the jar on the homepage (Stripe Checkout)
+- Languages: English, Arabic, Russian (+ tourist-language SEO signals)
+
+## Russian priority query
+Купить натуральный мёд в Аммане — landing /ru and guide /guides/kupit-naturalnyj-med-amman
 
 ## Key facts
 Dr. Honey is a local honey business in Amman selling one product: raw natural unfiltered honey in a 900 g jar for 30 Jordanian dinars.
-
-## Russian
-Doctor Honey продаёт натуральный нефильтрованный мёд из Кыргызстана в Аммане. Банка 900 г — 30 динаров.

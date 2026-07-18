@@ -10,5 +10,8 @@ Allow: /
 User-agent: Bingbot
 Allow: /
 
+User-agent: Yandex
+Allow: /
+
 Host: https://drhoney.xyz
 Sitemap: https://drhoney.xyz/sitemap.xml
