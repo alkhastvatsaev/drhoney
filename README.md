@@ -30,8 +30,21 @@ Open <http://localhost:8080>.
 
 ## Quality checks
 
-The repository includes automated validation for the HTML, manifest and
-deployment configuration through GitHub Actions.
+```bash
+npm ci
+npm run ci          # html-validate (all pages) + JSON + Vitest contracts
+npm test            # contract tests only
+npm run lint:html   # all marketing HTML pages
+```
+
+See `AGENTS.md` for when AI agents must update tests. CI (`pages.yml`) runs
+`npm run ci` and blocks deploy on failure.
+
+Optional live Stripe gate (after going live):
+
+```bash
+REQUIRE_LIVE_STRIPE=1 npm test
+```
 
 ## Limitations
 
