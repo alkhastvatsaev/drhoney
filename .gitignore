@@ -14,3 +14,7 @@ WhatsApp.svg.png
 # local photo dumps
 900.png
 Dr Honey 900.png
+
+test-results/
+playwright-report/
+blob-report/
