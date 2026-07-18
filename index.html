@@ -110,7 +110,7 @@
         "telephone": "+962777226349",
         "priceRange": "30 JOD",
         "currenciesAccepted": "JOD",
-        "paymentAccepted": "Cash, Bank Transfer",
+        "paymentAccepted": "Cash, Bank Transfer, Credit Card",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "Tabarboor",
@@ -154,7 +154,7 @@
         "mpn": "DH-900",
         "offers": {
           "@type": "Offer",
-          "url": "https://drhoney.xyz/",
+          "url": "https://buy.stripe.com/test_8x29AVal10tg2002QB4Ja00",
           "priceCurrency": "JOD",
           "price": "30.00",
           "availability": "https://schema.org/InStock",
@@ -251,18 +251,38 @@
       direction: ltr;
     }
 
-    .product-jar {
+    .product-jar-link {
       position: fixed;
       left: 50%;
       bottom: max(5.25rem, calc(env(safe-area-inset-bottom) + 4.25rem));
       transform: translateX(-50%);
       z-index: 4;
       width: min(26vw, 24vh, 210px);
+      display: block;
+      pointer-events: auto;
+      cursor: pointer;
+      text-decoration: none;
+      -webkit-tap-highlight-color: transparent;
+      animation: jarIn 1.15s 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+      transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .product-jar-link:hover,
+    .product-jar-link:focus-visible {
+      transform: translateX(-50%) scale(1.04);
+      outline: none;
+    }
+
+    .product-jar-link:focus-visible {
+      filter: drop-shadow(0 0 0 2px rgba(255, 255, 255, 0.85));
+    }
+
+    .product-jar {
+      width: 100%;
       height: auto;
       display: block;
       pointer-events: none;
       filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.45));
-      animation: jarIn 1.15s 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
     }
 
     @keyframes jarIn {
@@ -297,12 +317,20 @@
       line-height: 1.5;
       letter-spacing: -0.01em;
       text-align: center;
+      text-decoration: none;
       text-shadow:
         0 1px 2px rgba(0, 0, 0, 0.7),
         0 2px 8px rgba(0, 0, 0, 0.35);
       white-space: pre-line;
-      pointer-events: none;
+      pointer-events: auto;
+      cursor: pointer;
       transition: opacity 0.2s ease;
+    }
+
+    .products:hover,
+    .products:focus-visible {
+      opacity: 0.85;
+      outline: none;
     }
 
     .products.is-fading {
@@ -628,7 +656,7 @@
       .logo-honey,
       .logo-wa,
       .tagline,
-      .product-jar {
+      .product-jar-link {
         animation: none;
       }
 
@@ -641,7 +669,7 @@
       }
 
       .tagline,
-      .product-jar {
+      .product-jar-link {
         opacity: 1;
         animation: none;
       }
@@ -669,7 +697,7 @@
         min-height: 2.25rem;
       }
 
-      .product-jar {
+      .product-jar-link {
         bottom: max(4.75rem, calc(env(safe-area-inset-bottom) + 3.85rem));
         width: min(42vw, 28vh, 168px);
       }
@@ -731,7 +759,7 @@
         width: min(34vw, 120px);
       }
 
-      .product-jar {
+      .product-jar-link {
         bottom: max(4.4rem, calc(env(safe-area-inset-bottom) + 3.5rem));
         width: min(46vw, 26vh, 150px);
       }
@@ -778,7 +806,7 @@
         width: min(28vw, 110px);
       }
 
-      .product-jar {
+      .product-jar-link {
         bottom: max(4rem, calc(env(safe-area-inset-bottom) + 3.2rem));
         width: min(34vw, 22vh, 128px);
       }
@@ -859,16 +887,34 @@
     Based in Amman, Doctor Honey offers carefully selected raw, natural, and unfiltered honey from Kyrgyzstan, sourced directly from trusted beekeepers to preserve its purity.
   </p>
 
-  <img
-    class="product-jar"
-    src="dr-honey-900g.png"
-    width="1200"
-    height="1200"
-    alt="Dr. Honey 900 g natural honey jar"
-    decoding="async"
-  />
+  <a
+    class="product-jar-link"
+    id="buy-jar"
+    href="https://buy.stripe.com/test_8x29AVal10tg2002QB4Ja00"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Buy Dr. Honey 900 g jar for 30 JOD"
+  >
+    <img
+      class="product-jar"
+      src="dr-honey-900g.png"
+      width="1200"
+      height="1200"
+      alt="Dr. Honey 900 g natural honey jar — buy now"
+      decoding="async"
+    />
+  </a>
 
-  <p class="products" id="products" data-en="900 g jar: 30 JOD" data-ar="مرطبان 900 غرام: 30 دينار" data-ru="Банка 900 г: 30 иорданских динаров">900 g jar: 30 JOD</p>
+  <a
+    class="products"
+    id="products"
+    href="https://buy.stripe.com/test_8x29AVal10tg2002QB4Ja00"
+    target="_blank"
+    rel="noopener noreferrer"
+    data-en="900 g jar: 30 JOD — Buy"
+    data-ar="مرطبان 900 غرام: 30 دينار — اشترِ"
+    data-ru="Банка 900 г: 30 динаров — Купить"
+  >900 g jar: 30 JOD — Buy</a>
 
   <p class="location" id="location" data-en="Tabarboor, Amman, Jordan" data-ar="طبربور، عمّان، الأردن" data-ru="Табарбур, Амман, Иордания">
     Tabarboor, Amman, Jordan
@@ -877,11 +923,20 @@
   <a class="phone" href="https://wa.me/962777226349" target="_blank" rel="noopener noreferrer" dir="ltr"><bdi dir="ltr">+962&nbsp;7&nbsp;7722&nbsp;6349</bdi></a>
 
   <script>
+    // Stripe test Payment Link (replace with live buy.stripe.com/... for production)
+    const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/test_8x29AVal10tg2002QB4Ja00";
+    const STRIPE_PRICE_ID = "price_1TuPRcRwwbmtfQ0v7hSzdRN7";
+
     const bgVideo = document.getElementById("bg-video");
     const tagline = document.getElementById("tagline");
     const locationEl = document.getElementById("location");
     const productsEl = document.getElementById("products");
+    const buyJar = document.getElementById("buy-jar");
     const buttons = document.querySelectorAll(".lang-btn");
+
+    if (buyJar) buyJar.href = STRIPE_PAYMENT_LINK;
+    if (productsEl) productsEl.href = STRIPE_PAYMENT_LINK;
+
     const copy = {
       en: tagline.getAttribute("data-en"),
       ar: tagline.getAttribute("data-ar"),
