@@ -7,13 +7,16 @@
   "scripts": {
     "test": "vitest run",
     "test:watch": "vitest",
+    "test:e2e": "playwright test",
     "lint:html": "html-validate \"index.html\" \"thank-you.html\" \"merci.html\" \"ru/index.html\" \"ar/index.html\" \"guides/*.html\"",
     "lint:json": "node --input-type=module -e \"import { readFileSync } from 'node:fs'; for (const f of ['site.webmanifest','vercel.json']) JSON.parse(readFileSync(f,'utf8')); console.log('json ok')\"",
-    "ci": "npm run lint:html && npm run lint:json && npm test"
+    "ci": "npm run lint:html && npm run lint:json && npm test && npm run test:e2e"
   },
   "devDependencies": {
+    "@playwright/test": "^1.53.0",
     "cheerio": "^1.1.0",
     "html-validate": "^9.5.0",
+    "jsdom": "^26.1.0",
     "vitest": "^3.2.4"
   },
   "engines": {

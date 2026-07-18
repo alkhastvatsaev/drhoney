@@ -32,9 +32,10 @@ Open <http://localhost:8080>.
 
 ```bash
 npm ci
-npm run ci          # html-validate (all pages) + JSON + Vitest contracts
-npm test            # contract tests only
-npm run lint:html   # all marketing HTML pages
+npm run ci          # html-validate + JSON + Vitest + Playwright smoke
+npm test            # contracts + unit
+npm run test:e2e    # Playwright (lang switch + buy link)
+npm run lint:html
 ```
 
 See `AGENTS.md` for when AI agents must update tests. CI (`pages.yml`) runs

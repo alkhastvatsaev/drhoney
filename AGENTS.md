@@ -14,7 +14,8 @@ npm run ci
 
 | Change touches… | Update |
 |-----------------|--------|
-| Stripe Payment Link / price | `tests/contracts/checkout.test.ts` + `tests/fixtures/expected.ts` |
+| Stripe Payment Link / price | `js/stripe.js` + `tests/contracts/checkout.test.ts` + `EXPECTED` |
+| Language switcher behavior | `js/i18n.js` + `tests/unit/i18n-stripe.test.ts` (+ e2e if UX changes) |
 | WhatsApp / phone | `tests/contracts/whatsapp.test.ts` + `EXPECTED.whatsappPath` |
 | `og:image`, canonical, favicon, robots | `tests/contracts/seo.test.ts` |
 | hreflang / `/ru` / `/ar` | `tests/contracts/hreflang.test.ts` |

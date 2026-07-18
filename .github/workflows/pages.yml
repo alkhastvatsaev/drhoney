@@ -28,8 +28,12 @@ jobs:
         run: npm run lint:html
       - name: Validate JSON configuration
         run: npm run lint:json
-      - name: Contract tests
+      - name: Contract + unit tests
         run: npm test
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+      - name: E2E smoke
+        run: npm run test:e2e
 
   deploy:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
