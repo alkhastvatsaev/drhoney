@@ -1,0 +1,13 @@
+# Dr. Honey
+> Natural unfiltered honey from Kyrgyzstan, sold in Amman, Jordan.
+
+- Site: https://drhoney.xyz/
+- Product: 900 g jar — 30 JOD
+- Origin: Kyrgyzstan (Sowaj Jabal)
+- Location: Tabarboor, Amman, Jordan
+- Contact: WhatsApp +962 7 7722 6349
+- Languages: English, Arabic, Russian
+- Buy: click the jar on the homepage (Stripe Checkout)
+
+## Key facts
+Dr. Honey is a local honey business in Amman selling one product: raw natural unfiltered honey in a 900 g jar for 30 Jordanian dinars.

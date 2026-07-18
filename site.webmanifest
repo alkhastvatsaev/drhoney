@@ -1,7 +1,8 @@
 {
   "name": "Dr. Honey",
   "short_name": "Dr. Honey",
-  "description": "Natural unfiltered honey from Kyrgyzstan in Amman. 900 g jar for 30 JOD.",
+  "description": "Natural unfiltered honey in Amman — عسل طبيعي في عمّان. 900 g jar for 30 JOD.",
+  "lang": "en",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0a1a0c",
