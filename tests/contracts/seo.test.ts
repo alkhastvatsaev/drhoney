@@ -11,6 +11,15 @@ describe("T4 — SEO head contract (homepage)", () => {
     expect(title.length).toBeGreaterThan(10);
   });
 
+  it("targets English query natural honey Amman", () => {
+    const title = $("title").first().text();
+    const desc = $('meta[name="description"]').attr("content") ?? "";
+    expect(title.toLowerCase()).toContain("natural honey");
+    expect(title.toLowerCase()).toContain("amman");
+    expect(desc.toLowerCase()).toMatch(/natural honey/);
+    expect(desc.toLowerCase()).toContain("amman");
+  });
+
   it("has canonical to host root", () => {
     const href = $('link[rel="canonical"]').attr("href");
     expect(href).toBe(`${EXPECTED.host}/`);
