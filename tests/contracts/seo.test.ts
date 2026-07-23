@@ -11,12 +11,12 @@ describe("T4 — SEO head contract (homepage)", () => {
     expect(title.length).toBeGreaterThan(10);
   });
 
-  it("targets English query natural honey Amman", () => {
+  it("targets brand query Dr. Honey Amman with Russian description", () => {
     const title = $("title").first().text();
     const desc = $('meta[name="description"]').attr("content") ?? "";
-    expect(title.toLowerCase()).toContain("natural honey");
-    expect(title.toLowerCase()).toContain("amman");
-    expect(desc.toLowerCase()).toMatch(/natural honey/);
+    expect(title.toLowerCase()).toContain("dr. honey amman");
+    expect(title).toMatch(/мёд|Амман/);
+    expect(desc).toMatch(/купить|натуральн/i);
     expect(desc.toLowerCase()).toContain("amman");
   });
 
